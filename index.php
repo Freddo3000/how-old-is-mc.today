@@ -21,6 +21,8 @@ if (!$locale) {
 }
 $dateFormatter = new IntlDateFormatter($locale, IntlDateFormatter::LONG, IntlDateFormatter::LONG);
 
+$theme = isset($_GET['theme']) ? $_GET['theme'] : 'auto';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +32,19 @@ $dateFormatter = new IntlDateFormatter($locale, IntlDateFormatter::LONG, IntlDat
     <link rel="stylesheet" href="/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="View the age of any Minecraft version">
+    <style>
+        <?php if ($theme === 'dark'): ?>
+            html {
+                filter: invert(1);
+            }
+        <?php elseif ($theme === 'auto'): ?>
+            @media (prefers-color-scheme: dark) {
+                html {
+                    filter: invert(1);
+                }
+            }
+        <?php endif; ?>
+    </style>
 </head>
 <body>
 <?php if ($version): ?>
