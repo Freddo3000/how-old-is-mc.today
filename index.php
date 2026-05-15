@@ -4,7 +4,7 @@ use PistonMeta\VersionManifest;
 
 require 'vendor/autoload.php';
 
-$versionId = substr($_SERVER['REQUEST_URI'], 1);
+$versionId = substr(strtok($_SERVER['REQUEST_URI'], '?'), 1);
 if ($versionId) {
     $title = "How old is Minecraft " . $versionId . " today?";
 } else {
